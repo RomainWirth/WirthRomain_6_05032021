@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
 
-const stuffRoutes = require('./routes/stuff');
+const stuffRoutes = require('./routes/sauces');
 const userRoutes = require('./routes/user');
 
 let db_name = "WirthRomain_6_05032021";
@@ -29,7 +29,7 @@ app.use(bodyParser.json());
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
-app.use('/api/stuff', stuffRoutes);
+app.use('/api/sauces', stuffRoutes);
 app.use('/api/auth', userRoutes);
 
 module.exports = app; // exportation de l'application pour y accéder depuis les autres fichiers du projet
