@@ -21,7 +21,7 @@ exports.login = (req, res, next) => {
     User.findOne({ email: req.body.email })
     .then(user => {
         if (!user) {
-            return res.status(401).json({ error: 'utilisateur inconnu'});
+            return res.status(403).json({ error: 'unothorized request'});
         }
         bcrypt.compare(req.body.password, user.password)
         .then(valid => {
