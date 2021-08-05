@@ -61,9 +61,19 @@ exports.deleteSauce = (req, res, next) => {
 
 // fonction créer le statut like sur une sauce : POST
 exports.likeSauce = (req, res, next) => {
-    const like = new Like({
-    });
-    Sauce.save()
-    .then()
-    .catch(error => { res.status(400).json ({ error }); });
+    if (req.body.like === 1) {
+        Sauce.updateOne()
+        .then()
+        .catch(error => { res.status(400).json ({ error }); });
+    }
+    if (req.body.like === 0) {
+        Sauce.updateOne()
+        .then()
+        .catch(error => { res.status(400).json ({ error }); });
+    }
+    if (req.body.like === -1) {
+        Sauce.updateOne()
+        .then()
+        .catch(error => { res.status(400).json ({ error }); });
+    }
 };
