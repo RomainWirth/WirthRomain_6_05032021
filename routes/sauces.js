@@ -10,6 +10,6 @@ router.get('/', auth, sauceCtrl.getAllSauces); // trouver toutes les sauces
 router.get('/:id', auth, sauceCtrl.getOneSauce); // trouver une sauce en particulier
 router.put('/:id', auth, multer, sauceCtrl.modifySauce); // modifier une sauce
 router.delete('/:id', auth, sauceCtrl.deleteSauce); // supprimer une sauce
-// router.post('/:id/like', auth, stuffCtrl.likeSauce); // définit le statut like
+router.post('/:id/like', auth, sauceCtrl.likeSauce); // définit le statut like
 
 module.exports = router;
