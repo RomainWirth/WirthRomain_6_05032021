@@ -99,7 +99,7 @@ console.log(req.params);
     if(req.body.like === 0){
         Sauce.findOne({ _id: req.params.id })
         .then((sauce) => {
-            //si l'utilisateur a déjà like la sauce, on enlève le like et on l'enlève des usersLiked
+            //si l'utilisateur a déjà like la sauce, suppression du like et du usersLiked
             if(sauce.usersLiked.find(user => user === req.body.userId)){
                 Sauce.updateOne(
                     { _id: req.params.id },
@@ -111,7 +111,7 @@ console.log(req.params);
                 .then(() => { res.status(201).json({ message: "Evaluation ok" })})
                 .catch(error => { res.status(400).json({ error }); });
             }
-            //si l'utilisateur a déjà dislike la sauce, on enlève le dislike et on l'enlève des usersDisLiked
+            //si l'utilisateur a déjà dislike la sauce, suppression du like et du usersLiked
             if(sauce.usersDisliked.find(user => user === req.body.userId)){
                 Sauce.updateOne(
                     { _id: req.params.id },
@@ -122,7 +122,7 @@ console.log(req.params);
                 )
                 .then(() => { res.status(201).json({ message: "Evaluation ok" })})
                 .catch(error => { res.status(400).json({ error }); });
-            }    
+            }
         })
         .catch(error => { res.status(400).json ({ error }); });
     }
