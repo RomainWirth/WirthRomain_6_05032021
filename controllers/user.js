@@ -1,10 +1,10 @@
-const bcrypt = require('bcrypt'); // Algorythme de hachage
+const bcrypt = require('bcrypt'); // Algorythme de hachage = package de chiffrement
 const jwt = require('jsonwebtoken'); // standard qui permet l'échange de jetons
 
 const User = require('../models/User');
 
 exports.signup = (req, res, next) => {
-    bcrypt.hash(req.body.password, 10) // 10 tours d'algorythme de hachage suffisent pour la sécurité et éviter que ce soit trop long
+    bcrypt.hash(req.body.password, 10) // salt (salage) : 10 tours d'algorythme de hachage suffisent pour la sécurité et éviter que ce soit trop long
     .then(hash => { // hash = méthode pour crypter le mot de passe
         const user = new User({
             email: req.body.email,

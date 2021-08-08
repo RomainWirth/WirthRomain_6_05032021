@@ -1,16 +1,18 @@
 const jwt = require('jsonwebtoken');
 
-module.exports = (req, res, next) => {
+module.exports = (req, res, next) => { // try...catch pour réduire les erreurs liés à tous les problèmes possibles
     try {
-        const token = req.headers.authorization.split(' ')[1];
-        const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
-        const userId = decodedToken.userId;
-        if (req.body.userId && req.body.userId !== userId) {
-            throw 'ID utilisateur non valable';
+        const token = req.headers.authorization.split(' ')[1]; // on extrait le token du header authorization de la requête entrante
+        const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET'); // verify permet de décoder le token : si token invalide = génère une erreur
+        const userId = decodedToken.userId; // on extrait l'id utilisateur du token
+        if (req.body.userId && req.body.userId !== userId) { // si la demande contient un id user : on le compare à celui extrait du token
+            throw 'ID utilisateur non valable'; // s'ils sont différents, on génère une erreur
         } else {
-            next();
+            next(); // si pas d'erreur on passe l'exécution de la fonction avec next();
         }
-    } catch (error) {
+    } catch (error) { // affiche les erreurs 
         res.status(401).json({ error: error | 'requête non authentifiée'});
     }
 };
+
+// le middleware est ensuite appliqué à toutes les routes "sauces" pour les protéger
