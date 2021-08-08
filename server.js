@@ -1,5 +1,4 @@
 const http = require('http');
-// const { env } = require('process'); // S'est ajouté tout seul dans les constantes...
 const app = require('./app');
 
 const normalizePort = val => {

@@ -65,10 +65,11 @@ exports.likeSauce = (req, res, next) => {
 // si like = 1 : alors l'utilisateur poste un like sur la sauce
 // si like = -1 : alors l'utilisateur poste un dislike la sauce
 // si like = 0 : alors l'utilisateur annule son like ou son dislike
-console.log("requête body");
-console.log(req.body);
-console.log("requête paramètres");
-console.log(req.params);
+console.log("requête body"); // console log s'affiche sur la console d'écoute port 3000
+console.log(req.body); // vérification de id récupéré du body = userId
+console.log("requête paramètres"); // console log s'affiche sur la console d'écoute port 3000
+console.log(req.params); // vérification de id récupéré en paramètre = id de la sauce
+
     // si l'utilisateur n'a pas déjà "like" la sauce, il poste un like et on l'ajoute aux usersLiked
     if(req.body.like === 1){
         Sauce.updateOne(

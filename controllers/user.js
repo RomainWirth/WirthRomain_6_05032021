@@ -1,11 +1,11 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt'); // Algorythme de hachage
+const jwt = require('jsonwebtoken'); // standard qui permet l'échange de jetons
 
 const User = require('../models/User');
 
 exports.signup = (req, res, next) => {
-    bcrypt.hash(req.body.password, 10)
-    .then(hash => {
+    bcrypt.hash(req.body.password, 10) // 10 tours d'algorythme de hachage suffisent pour la sécurité et éviter que ce soit trop long
+    .then(hash => { // hash = méthode pour crypter le mot de passe
         const user = new User({
             email: req.body.email,
             password: hash
@@ -32,8 +32,8 @@ exports.login = (req, res, next) => {
                 userId: user._id,
                 token: jwt.sign(
                     { userId: user._id },
-                    'RANDOM_TOKEN_SECRET',
-                    { expiresIn: '24h' }
+                    'RANDOM_TOKEN_SECRET', // clé secrète de l'encodage - en production : 'string' longue et aléatoire
+                    { expiresIn: '24h' } // limite de durée du token : 24h
                 )
             });
         })

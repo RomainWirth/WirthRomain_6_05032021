@@ -1,4 +1,4 @@
-const mongoose = require ('mongoose');
+const mongoose = require ('mongoose'); // librairie JavaScript de MongoDB
 const uniqueValidator = require('mongoose-unique-validator'); // plugin permet d'empêcher l'utilisation de la même adresse mail plusieurs fois
 
 const userSchema = mongoose.Schema({
@@ -6,6 +6,6 @@ const userSchema = mongoose.Schema({
     password: { type: String, required: true }
 });
 
-userSchema.plugin(uniqueValidator); // apprel de la const uniqueValidator
+userSchema.plugin(uniqueValidator); // appel de la const uniqueValidator
 
 module.exports = mongoose.model('User', userSchema);
