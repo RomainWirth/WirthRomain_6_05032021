@@ -17,4 +17,4 @@ const storage = multer.diskStorage({
     }
 });
 
-module.exports = multer({storage: storage}).single('image'); // exporation de l'élément multer
+module.exports = multer({storage: storage}).single('image'); // exporation de l'élément multer + constante storage + gestion des téléchargements uniquement
